@@ -1,0 +1,70 @@
+:root {
+  /* Web page styles */
+  --background-color: #fafafa;
+
+  /* Emulated paper page styles */
+  --page-type: letter;
+  --page-width: 8.5in;
+  --page-height: 11in;
+  --page-margin: .5in;
+  --page-border-color: #d3d3d3;
+
+  /* Emulated page content styles */
+  --content-height: calc(var(--page-height) - var(--page-margin) - var(--page-margin));
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; 
+}
+
+body {
+  background-color: var(--background-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.page {
+  background-color: #fff;
+  border: 1px var(--page-border-color) solid;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  margin: var(--page-margin) auto;
+  min-height: var(--page-height);
+  padding: var(--page-margin);
+  width: var(--page-width);
+}
+
+.page__content {
+  height: var(--content-height);
+  /* Hide metadata in print version by covering it with white */
+  outline: var(--page-margin) #fff solid;
+  position: relative;
+}
+
+@page {
+  margin: 0;
+  size: var(--page-type);
+}
+
+@media print {
+  html, body {
+    height: var(--page-height);
+    width: var(--page-width);
+  }
+  .page {
+    -webkit-print-color-adjust: exact;
+    box-shadow: inset 0 0 0 1000px gold;
+    background: initial;
+    border-radius: initial;
+    border: initial;
+    box-shadow: initial;
+    margin: 0;
+    min-height: initial;
+    padding: var(--page-margin);
+    page-break-after: always;
+    width: initial;
+  }
+}
